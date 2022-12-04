@@ -18,8 +18,12 @@
     stateVersion = "22.11";
     
     packages = with pkgs; [
-      chromium signal-desktop
+      git neovim chromium signal-desktop
     ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
 
   programs = {
@@ -39,6 +43,11 @@
       userName = "Johan Rylander";
       delta = {
         enable = true;
+      };
+      extraConfig = {
+        core = {
+          excludesfile = "/home/jrylander/.gitignore_global";
+	};
       };
     };
   };
