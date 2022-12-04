@@ -37,6 +37,9 @@
       enable = true;
       userEmail = "johan@rylander.cc";
       userName = "Johan Rylander";
+      delta = {
+        enable = true;
+      };
     };
   };
 }
