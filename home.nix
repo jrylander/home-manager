@@ -18,7 +18,14 @@
     stateVersion = "22.11";
     
     packages = with pkgs; [
-      git neovim chromium signal-desktop
+      age
+      age-plugin-yubikey
+      sops
+      git
+      neovim
+      chromium
+      signal-desktop
+      zsh
     ];
 
     sessionVariables = {
@@ -45,10 +52,13 @@
         enable = true;
       };
       extraConfig = {
-        core = {
-          excludesfile = "/home/jrylander/.gitignore_global";
-	};
+        core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
+        url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
       };
+    };
+
+    zsh = {
+      enable = true;
     };
   };
 }
