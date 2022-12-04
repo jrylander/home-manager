@@ -54,11 +54,18 @@
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
+	init.defaultBranch = "master";
+	safe.directory = "/etc/nixos";
       };
     };
 
     zsh = {
       enable = true;
+      defaultKeymap = "emacs";
+      oh-my-zsh = {
+        enable = true;
+	plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+      };
     };
   };
 }
