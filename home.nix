@@ -34,6 +34,7 @@
     };
 
     git = {
+      enable = true;
       userEmail = "johan@rylander.cc";
       userName = "Johan Rylander";
     };
