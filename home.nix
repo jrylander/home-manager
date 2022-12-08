@@ -18,13 +18,8 @@
     stateVersion = "22.11";
     
     packages = with pkgs; [
-      age
-      sops
-      git
-      neovim
       chromium
       signal-desktop
-      zsh
     ];
 
     sessionVariables = {
@@ -53,8 +48,8 @@
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
-	init.defaultBranch = "master";
-	safe.directory = "/etc/nixos";
+        init.defaultBranch = "master";
+        safe.directory = "/etc/nixos";
       };
     };
 
@@ -63,8 +58,31 @@
       defaultKeymap = "emacs";
       oh-my-zsh = {
         enable = true;
-	plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        plugins = [ "git" "docker" "docker-compose" "kubectl" ];
       };
+    };
+
+    fzf = {
+      enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        fzf-vim
+      ];
+
+      extraConfig = ''
+        syntax on
+        filetype plugin indent on
+        set shiftwidth=2
+        set expandtab
+        let mapleader=' '
+      '';
     };
   };
 }
