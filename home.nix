@@ -18,6 +18,7 @@
     stateVersion = "22.11";
     
     packages = with pkgs; [
+      chezmoi
       chromium
       entr
       fd
@@ -28,6 +29,7 @@
 
     sessionVariables = {
       EDITOR = "nvim";
+      GOOGLE_APPLICATION_CREDENTIALS="service-account-credentials.json";
     };
   };
 
@@ -72,6 +74,9 @@
         enable = true;
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
       };
+      initExtra = ''
+        source ~/.zshrc-local || true
+      '';
     };
 
     fzf = {
