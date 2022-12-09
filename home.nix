@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfreePredicate = (_: true);
+
   home = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -24,6 +26,7 @@
       entr
       fd
       htop
+      jetbrains.idea-ultimate
       rustup
       signal-desktop
     ];
