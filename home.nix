@@ -18,6 +18,7 @@
     stateVersion = "22.11";
     
     packages = with pkgs; [
+      bitwarden-cli
       chezmoi
       chromium
       entr
@@ -75,6 +76,37 @@
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
       };
       initExtra = ''
+        export GPG_TTY=$(tty)
+
+        # NVM
+        export NVM_DIR=$HOME/.local/share/nvm
+        if [[ ! -e $NVM_DIR ]]; then
+          git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
+        fi
+        source $NVM_DIR/nvm.sh
+        source $NVM_DIR/bash_completion
+
+        # Rustup
+        export CARGO_HOME=$HOME/.cargo
+        if [[ -e $CARGO_HOME ]]; then
+          export PATH=$CARGO_HOME/bin:$PATH
+        fi
+
+        export PATH=~/.local/bin:$PATH
+
+        # The next line updates PATH for the Google Cloud SDK.
+        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+        # The next line enables shell command completion for gcloud.
+        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+        
+        if [ "$(hostname)" = "mcrylander" -o "$(hostname)" = "McRylander" ]
+        then
+          # brew
+          export PATH=/opt/homebrew/bin:$PATH
+          export PATH=/opt/homebrew/opt/libpq/bin:$PATH
+        fi
+
         source ~/.zshrc-local || true
       '';
     };
