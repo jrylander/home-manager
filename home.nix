@@ -19,6 +19,10 @@
     
     packages = with pkgs; [
       chromium
+      entr
+      fd
+      htop
+      rustup
       signal-desktop
     ];
 
@@ -30,6 +34,8 @@
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
+
+    bat.enable = true;
 
     tmux = {
       enable = true;
@@ -56,6 +62,12 @@
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
+      enableSyntaxHighlighting = true;
+      enableAutosuggestions = true;
+      history = {
+        expireDuplicatesFirst = true;
+        extended = true;
+      };
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
@@ -68,7 +80,6 @@
 
     neovim = {
       enable = true;
-      viAlias = true;
       vimAlias = true;
 
       plugins = with pkgs.vimPlugins; [
