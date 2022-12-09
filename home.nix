@@ -40,6 +40,11 @@
 
     bat.enable = true;
 
+    go = {
+      enable = true;
+      goPath = "go";
+    };
+
     tmux = {
       enable = true;
       shortcut = "w";
