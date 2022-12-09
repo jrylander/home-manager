@@ -18,18 +18,22 @@
     # the Home Manager release notes for a list of state version
     # changes in each release.
     stateVersion = "22.11";
-    
+
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
-      chromium
       entr
       fd
       htop
       jetbrains.idea-ultimate
       rustup
       signal-desktop
-    ];
+      git
+    ] ++ (if stdenv.isLinux then [
+      chromium
+      gnome3.gnome-tweaks
+      openconnect
+    ] else []);
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -134,6 +138,7 @@
 
       extraConfig = ''
         syntax on
+        set autochdir
         filetype plugin indent on
         set shiftwidth=2
         set expandtab
