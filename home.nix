@@ -22,24 +22,31 @@
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
-      docker-compose
-      entr
       fd
-      gcc
       git
       htop
-      jetbrains.idea-ultimate
+      signal-desktop
+
+      entr
       just
+      kubectl
       openssl
       openssl.dev
       pkg-config
       protobuf
       rustup
-      signal-desktop
     ] ++ (if stdenv.isLinux then [
       chromium
+      docker
+      docker-compose
+      gcc
       gnome3.gnome-tweaks
+      jetbrains.idea-ultimate
+      lens
       openconnect
+      slack
+      teams
+      xsel
     ] else []);
 
     sessionVariables = {
