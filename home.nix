@@ -22,13 +22,20 @@
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
+      docker-compose
       entr
       fd
+      gcc
+      git
       htop
       jetbrains.idea-ultimate
+      just
+      openssl
+      openssl.dev
+      pkg-config
+      protobuf
       rustup
       signal-desktop
-      git
     ] ++ (if stdenv.isLinux then [
       chromium
       gnome3.gnome-tweaks
