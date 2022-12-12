@@ -51,7 +51,8 @@
 
     sessionVariables = {
       EDITOR = "nvim";
-      GOOGLE_APPLICATION_CREDENTIALS="service-account-credentials.json";
+      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
+      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
     };
   };
 
