@@ -43,7 +43,6 @@
       gcc
       gnome3.gnome-tweaks
       jetbrains.idea-ultimate
-      lens
       openconnect
       slack
       teams
