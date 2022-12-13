@@ -29,6 +29,7 @@
 
       entr
       just
+      k9s
       kubectl
       openssl
       openssl.dev
