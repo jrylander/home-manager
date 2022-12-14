@@ -6,8 +6,9 @@
   home = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
-    username = "jrylander";
-    homeDirectory = "/home/jrylander";
+    
+    username = "jow2"; 
+    homeDirectory = "/Users/jow2";
 
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -20,34 +21,20 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
+      alacritty
       bitwarden-cli
       chezmoi
       fd
-      git
       htop
-      signal-desktop
-
       entr
       just
       k9s
       kubectl
-      openssl
-      openssl.dev
-      pkg-config
       protobuf
       rustup
-    ] ++ (if stdenv.isLinux then [
-      chromium
-      docker
-      docker-compose
-      gcc
-      gnome3.gnome-tweaks
-      jetbrains.idea-ultimate
-      openconnect
-      slack
-      teams
-      xsel
-    ] else []);
+      tmux
+      wget
+    ];
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -86,6 +73,7 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         safe.directory = "/etc/nixos";
+        credential.helper = "store";
       };
     };
 
@@ -127,13 +115,6 @@
         # The next line enables shell command completion for gcloud.
         if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
         
-        if [ "$(hostname)" = "mcrylander" -o "$(hostname)" = "McRylander" ]
-        then
-          # brew
-          export PATH=/opt/homebrew/bin:$PATH
-          export PATH=/opt/homebrew/opt/libpq/bin:$PATH
-        fi
-
         source ~/.zshrc-local || true
       '';
     };
