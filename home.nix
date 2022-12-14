@@ -21,7 +21,6 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
-      alacritty
       bitwarden-cli
       chezmoi
       fd
