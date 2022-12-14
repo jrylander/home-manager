@@ -22,32 +22,30 @@
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
-      fd
-      git
-      htop
-      signal-desktop
-
+      chromium
+      docker
+      docker-compose
       entr
+      fd
+      gcc
+      git
+      gnome3.gnome-tweaks
+      htop
+      jetbrains.idea-ultimate
+      signal-desktop
       just
       k9s
       kubectl
+      openconnect
       openssl
       openssl.dev
       pkg-config
       protobuf
       rustup
-    ] ++ (if stdenv.isLinux then [
-      chromium
-      docker
-      docker-compose
-      gcc
-      gnome3.gnome-tweaks
-      jetbrains.idea-ultimate
-      openconnect
       slack
       teams
       xsel
-    ] else []);
+    ];
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -86,6 +84,7 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         safe.directory = "/etc/nixos";
+        credential.helper = "store";
       };
     };
 
@@ -126,13 +125,6 @@
 
         # The next line enables shell command completion for gcloud.
         if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-        
-        if [ "$(hostname)" = "mcrylander" -o "$(hostname)" = "McRylander" ]
-        then
-          # brew
-          export PATH=/opt/homebrew/bin:$PATH
-          export PATH=/opt/homebrew/opt/libpq/bin:$PATH
-        fi
 
         source ~/.zshrc-local || true
       '';
