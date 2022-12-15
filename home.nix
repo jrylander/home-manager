@@ -108,6 +108,9 @@
 
         export PATH=~/.local/bin:$PATH
 
+        # Rancher desktop
+        export PATH=~/.rd/bin:$PATH
+
         # The next line updates PATH for the Google Cloud SDK.
         if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
 
