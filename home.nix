@@ -22,23 +22,30 @@
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
+      chromium
+      docker
+      docker-compose
       entr
       fd
       gcc
+      git
+      gnome3.gnome-tweaks
       htop
       jetbrains.idea-ultimate
+      signal-desktop
+      just
+      k9s
+      kubectl
+      openconnect
       openssl
       openssl.dev
-      protobuf
       pkg-config
+      protobuf
       rustup
-      signal-desktop
-      git
-    ] ++ (if stdenv.isLinux then [
-      chromium
-      gnome3.gnome-tweaks
-      openconnect
-    ] else []);
+      slack
+      teams
+      xsel
+    ];
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -77,6 +84,7 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         safe.directory = "/etc/nixos";
+        credential.helper = "store";
       };
     };
 
@@ -112,17 +120,11 @@
 
         export PATH=~/.local/bin:$PATH
 
-        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]
-        then
-          source '/opt/google-cloud-sdk/path.zsh.inc'
-        fi
-        
-        if [ "$(hostname)" = "mcrylander" -o "$(hostname)" = "McRylander" ]
-        then
-          # brew
-          export PATH=/opt/homebrew/bin:$PATH
-          export PATH=/opt/homebrew/opt/libpq/bin:$PATH
-        fi
+        # The next line updates PATH for the Google Cloud SDK.
+        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+        # The next line enables shell command completion for gcloud.
+        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
         source ~/.zshrc-local || true
       '';
