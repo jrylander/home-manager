@@ -24,8 +24,13 @@
       chezmoi
       entr
       fd
+      gcc
       htop
       jetbrains.idea-ultimate
+      openssl
+      openssl.dev
+      protobuf
+      pkg-config
       rustup
       signal-desktop
       git
@@ -37,7 +42,8 @@
 
     sessionVariables = {
       EDITOR = "nvim";
-      GOOGLE_APPLICATION_CREDENTIALS="service-account-credentials.json";
+      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
+      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
     };
   };
 
@@ -106,11 +112,10 @@
 
         export PATH=~/.local/bin:$PATH
 
-        # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-        # The next line enables shell command completion for gcloud.
-        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]
+        then
+          source '/opt/google-cloud-sdk/path.zsh.inc'
+        fi
         
         if [ "$(hostname)" = "mcrylander" -o "$(hostname)" = "McRylander" ]
         then
