@@ -20,6 +20,7 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
+      bind
       bitwarden-cli
       chezmoi
       chromium
