@@ -44,6 +44,7 @@
       rustup
       slack
       teams
+      wireguard-tools
       xsel
     ];
 
