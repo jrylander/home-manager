@@ -36,6 +36,7 @@
       signal-desktop
       just
       k9s
+      killall
       kubectl
       openconnect
       openssl
