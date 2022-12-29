@@ -21,9 +21,14 @@
 
 
     packages = with pkgs; [
+      ansible
       bind
+      bitwarden-cli
+      chezmoi
       fd
       git
+      gnumake
+      killall
     ];
 
     sessionVariables = {
