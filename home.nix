@@ -19,41 +19,15 @@
     # changes in each release.
     stateVersion = "22.11";
 
+
     packages = with pkgs; [
       bind
-      bitwarden-cli
-      chezmoi
-      chromium
-      docker
-      docker-compose
-      entr
       fd
-      gcc
       git
-      gnome3.gnome-tweaks
-      htop
-      jetbrains.idea-ultimate
-      signal-desktop
-      just
-      k9s
-      killall
-      kubectl
-      openconnect
-      openssl
-      openssl.dev
-      pkg-config
-      protobuf
-      rustup
-      slack
-      teams
-      wireguard-tools
-      xsel
     ];
 
     sessionVariables = {
       EDITOR = "nvim";
-      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
-      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
     };
   };
 
@@ -62,11 +36,6 @@
     home-manager.enable = true;
 
     bat.enable = true;
-
-    go = {
-      enable = true;
-      goPath = "go";
-    };
 
     tmux = {
       enable = true;
@@ -84,10 +53,8 @@
       };
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
-        url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         safe.directory = "/etc/nixos";
-        credential.helper = "store";
       };
     };
 
@@ -102,33 +69,9 @@
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        plugins = [ "git" ];
       };
       initExtra = ''
-        export GPG_TTY=$(tty)
-
-        # NVM
-        export NVM_DIR=$HOME/.local/share/nvm
-        if [[ ! -e $NVM_DIR ]]; then
-          git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
-        fi
-        source $NVM_DIR/nvm.sh
-        source $NVM_DIR/bash_completion
-
-        # Rustup
-        export CARGO_HOME=$HOME/.cargo
-        if [[ -e $CARGO_HOME ]]; then
-          export PATH=$CARGO_HOME/bin:$PATH
-        fi
-
-        export PATH=~/.local/bin:$PATH
-
-        # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-        # The next line enables shell command completion for gcloud.
-        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-
         source ~/.zshrc-local || true
       '';
     };
