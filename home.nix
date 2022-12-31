@@ -25,6 +25,7 @@
       calibre
       chezmoi
       chromium
+      discord
       docker
       docker-compose
       entr
