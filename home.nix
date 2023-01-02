@@ -40,6 +40,8 @@
       k9s
       killall
       kubectl
+      logseq
+      obsidian
       openconnect
       openssl
       openssl.dev
