@@ -30,6 +30,7 @@
       entr
       just
       k9s
+      killall
       kubectl
       openssl
       openssl.dev
