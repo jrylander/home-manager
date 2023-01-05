@@ -20,40 +20,53 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
+      bind
       bitwarden-cli
+      calibre
       chezmoi
-      fd
-      git
-      htop
-      signal-desktop
-
+      chromium
+      discord
+      docker
+      docker-compose
       entr
+      fd
+      gcc
+      git
+      gnome3.gnome-tweaks
+      htop
+      jetbrains.idea-ultimate
+      signal-desktop
       just
       k9s
       killall
       kubectl
+      logseq
+      obsidian
+      openconnect
       openssl
       openssl.dev
       pkg-config
       protobuf
       rustup
-    ] ++ (if stdenv.isLinux then [
-      chromium
-      docker
-      docker-compose
-      gcc
-      gnome3.gnome-tweaks
-      jetbrains.idea-ultimate
-      openconnect
       slack
       teams
+      wireguard-tools
       xsel
-    ] else []);
+    ];
 
     sessionVariables = {
       EDITOR = "nvim";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
+    };
+  };
+
+  services = {
+    dropbox = {
+      enable = true;
+    };
+    syncthing = {
+      enable = true;
     };
   };
 
@@ -87,6 +100,7 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         safe.directory = "/etc/nixos";
+        credential.helper = "store";
       };
     };
 
@@ -127,13 +141,6 @@
 
         # The next line enables shell command completion for gcloud.
         if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-        
-        if [ "$(hostname)" = "mcrylander" -o "$(hostname)" = "McRylander" ]
-        then
-          # brew
-          export PATH=/opt/homebrew/bin:$PATH
-          export PATH=/opt/homebrew/opt/libpq/bin:$PATH
-        fi
 
         source ~/.zshrc-local || true
       '';
