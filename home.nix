@@ -30,6 +30,8 @@
       docker-compose
       entr
       fd
+      fira-code
+      fira-code-symbols
       gcc
       git
       gnome3.gnome-tweaks
@@ -51,6 +53,7 @@
       slack
       teams
       wireguard-tools
+      wireshark
       xsel
     ];
 
@@ -75,6 +78,25 @@
     home-manager.enable = true;
 
     bat.enable = true;
+
+    alacritty = {
+      enable = true;
+      settings = {
+        window = {
+          dimensions = {
+            columns = 132;
+            lines = 42;
+          };
+        };
+        font = {
+          size = 14;
+          normal = {
+            family = "Fira Code";
+            style = "Regular";
+          };
+        };
+      };
+    };
 
     go = {
       enable = true;
