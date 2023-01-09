@@ -35,6 +35,7 @@
       gcc
       git
       gnome3.gnome-tweaks
+      helix
       htop
       jetbrains.idea-ultimate
       signal-desktop
@@ -51,6 +52,7 @@
       protobuf
       rustup
       slack
+      spotify
       teams
       wireguard-tools
       wireshark
@@ -58,7 +60,7 @@
     ];
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
     };
@@ -171,24 +173,4 @@
     fzf = {
       enable = true;
     };
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        fzf-vim
-      ];
-
-      extraConfig = ''
-        syntax on
-        set autochdir
-        filetype plugin indent on
-        set shiftwidth=2
-        set expandtab
-        let mapleader=' '
-      '';
-    };
-  };
 }
