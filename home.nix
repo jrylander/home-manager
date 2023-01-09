@@ -173,4 +173,5 @@
     fzf = {
       enable = true;
     };
+  };
 }
