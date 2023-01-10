@@ -24,7 +24,6 @@
       bitwarden-cli
       calibre
       chezmoi
-      chromium
       discord
       docker
       docker-compose
@@ -110,6 +109,7 @@
       shortcut = "w";
       keyMode = "vi";
       customPaneNavigationAndResize = true;
+      escapeTime = 0;
     };
 
     git = {
@@ -126,6 +126,13 @@
         safe.directory = "/etc/nixos";
         credential.helper = "store";
       };
+    };
+
+    chromium = {
+      enable = true;
+      extensions = [
+        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
+      ];
     };
 
     zsh = {
