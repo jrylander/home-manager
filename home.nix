@@ -21,18 +21,17 @@
 
 
     packages = with pkgs; [
-      ansible
       bind
       bitwarden-cli
       chezmoi
       fd
       git
-      gnumake
+      helix
       killall
     ];
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
     };
   };
 
@@ -59,7 +58,6 @@
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         init.defaultBranch = "master";
-        safe.directory = "/etc/nixos";
       };
     };
 
@@ -83,25 +81,6 @@
 
     fzf = {
       enable = true;
-    };
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        fzf-vim
-      ];
-
-      extraConfig = ''
-        syntax on
-        set autochdir
-        filetype plugin indent on
-        set shiftwidth=2
-        set expandtab
-        let mapleader=' '
-      '';
     };
   };
 }
