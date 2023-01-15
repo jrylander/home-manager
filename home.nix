@@ -24,15 +24,17 @@
       bitwarden-cli
       calibre
       chezmoi
-      chromium
       discord
       docker
       docker-compose
       entr
       fd
+      fira-code
+      fira-code-symbols
       gcc
       git
       gnome3.gnome-tweaks
+      helix
       htop
       jetbrains.idea-ultimate
       signal-desktop
@@ -49,13 +51,15 @@
       protobuf
       rustup
       slack
+      spotify
       teams
       wireguard-tools
+      wireshark
       xsel
     ];
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
     };
@@ -76,6 +80,25 @@
 
     bat.enable = true;
 
+    alacritty = {
+      enable = true;
+      settings = {
+        window = {
+          dimensions = {
+            columns = 132;
+            lines = 42;
+          };
+        };
+        font = {
+          size = 14;
+          normal = {
+            family = "Fira Code";
+            style = "Regular";
+          };
+        };
+      };
+    };
+
     go = {
       enable = true;
       goPath = "go";
@@ -86,6 +109,7 @@
       shortcut = "w";
       keyMode = "vi";
       customPaneNavigationAndResize = true;
+      escapeTime = 0;
     };
 
     git = {
@@ -102,6 +126,13 @@
         safe.directory = "/etc/nixos";
         credential.helper = "store";
       };
+    };
+
+    chromium = {
+      enable = true;
+      extensions = [
+        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
+      ];
     };
 
     zsh = {
@@ -148,25 +179,6 @@
 
     fzf = {
       enable = true;
-    };
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        fzf-vim
-      ];
-
-      extraConfig = ''
-        syntax on
-        set autochdir
-        filetype plugin indent on
-        set shiftwidth=2
-        set expandtab
-        let mapleader=' '
-      '';
     };
   };
 }
