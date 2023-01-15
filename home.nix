@@ -66,9 +66,6 @@
   };
 
   services = {
-    dropbox = {
-      enable = true;
-    };
     syncthing = {
       enable = true;
     };
