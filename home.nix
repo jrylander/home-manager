@@ -59,8 +59,8 @@
 #          "~/.alacritty-colorscheme/themes/night_owlish_light.yaml"
         ];
         window.dimensions = {
-          lines = 50;
-          columns = 160;
+          lines = 45;
+          columns = 150;
         };
         font = {
           normal = {
