@@ -98,6 +98,7 @@
       shortcut = "w";
       keyMode = "vi";
       customPaneNavigationAndResize = true;
+      escapeTime = 0;
     };
 
     git = {
