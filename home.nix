@@ -29,6 +29,7 @@
       just
       k9s
       kubectl
+      postgresql
       protobuf
       rustup
       tmux
