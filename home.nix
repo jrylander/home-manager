@@ -26,6 +26,8 @@
       fd
       htop
       entr
+      helix
+      jq
       just
       k9s
       kubectl
@@ -37,7 +39,7 @@
     ];
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "hx";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
     };
@@ -48,6 +50,43 @@
     home-manager.enable = true;
 
     bat.enable = true;
+
+    alacritty = {
+      enable = true;
+      settings = {
+        import = [
+          "~/.alacritty-colorscheme/themes/afterglow.yaml"
+#          "~/.alacritty-colorscheme/themes/night_owlish_light.yaml"
+        ];
+        window.dimensions = {
+          lines = 50;
+          columns = 160;
+        };
+        font = {
+          normal = {
+            family = "Fira Code";
+            style = "Regular";
+          };
+
+          bold = {
+            family = "Fira Code";
+            style = "Bold";
+          };
+
+          italic = {
+            family = "Fira Code";
+            style = "Italic";
+          };
+
+          bold_italic = {
+            family = "Fira Code";
+            style = "Bold Italic";
+          };
+
+          size = 18.0;
+        };
+      };
+    };
 
     go = {
       enable = true;
@@ -91,6 +130,19 @@
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
       };
       initExtra = ''
+        ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+        pasteinit() {
+          OLD_SELF_INSERT=''${''${(s.:.)widgets[self-insert]}[2,3]}
+          zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+        }
+
+        pastefinish() {
+          zle -N self-insert $OLD_SELF_INSERT
+        }
+        zstyle :bracketed-paste-magic paste-init pasteinit
+        zstyle :bracketed-paste-magic paste-finish pastefinish
+        ### Fix slowness of pastes
+
         export GPG_TTY=$(tty)
 
         # NVM
