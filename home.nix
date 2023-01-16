@@ -31,11 +31,8 @@
       fd
       fira-code
       fira-code-symbols
-      gcc
       git
       gnome3.gnome-tweaks
-      helix
-      htop
       jetbrains.idea-ultimate
       signal-desktop
       just
@@ -43,19 +40,11 @@
       killall
       kubectl
       logseq
-      obsidian
       openconnect
-      openssl
-      openssl.dev
-      pkg-config
-      protobuf
-      rustup
       slack
       spotify
       teams
       wireguard-tools
-      wireshark
-      xsel
     ];
 
     sessionVariables = {
