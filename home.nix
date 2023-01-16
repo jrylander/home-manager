@@ -23,6 +23,7 @@
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
+      delve
       fd
       htop
       entr
