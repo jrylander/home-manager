@@ -33,6 +33,7 @@
       kubectl
       postgresql
       protobuf
+      ripgrep
       rustup
       tmux
       wget
@@ -90,7 +91,6 @@
 
     go = {
       enable = true;
-      goPath = "go";
     };
 
     tmux = {
