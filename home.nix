@@ -38,6 +38,7 @@
       k9s
       killall
       kubectl
+      lazygit
       logseq
       openconnect
       slack
