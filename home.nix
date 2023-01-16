@@ -31,7 +31,6 @@
       fd
       fira-code
       fira-code-symbols
-      git
       gnome3.gnome-tweaks
       jetbrains.idea-ultimate
       signal-desktop
@@ -65,6 +64,10 @@
     home-manager.enable = true;
 
     bat.enable = true;
+    
+    direnv = {
+      enable = true;
+    };
 
     alacritty = {
       enable = true;
@@ -72,7 +75,7 @@
         window = {
           dimensions = {
             columns = 132;
-            lines = 42;
+            lines = 40;
           };
         };
         font = {
@@ -109,8 +112,8 @@
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
-        safe.directory = "/etc/nixos";
         credential.helper = "store";
+        pull.rebase  = "false";
       };
     };
 
