@@ -29,10 +29,8 @@
       jq
       k9s
       kubectl
-      postgresql
       ripgrep
       tmux
-      wget
     ];
 
     sessionVariables = {
@@ -56,15 +54,17 @@
           "~/.alacritty-colorscheme/themes/afterglow.yaml"
 #          "~/.alacritty-colorscheme/themes/night_owlish_light.yaml"
         ];
-        window.dimensions = {
-          lines = 45;
-          columns = 150;
+        window = {
+          dimensions = {
+            columns = 150;
+            lines = 45;
+          };
         };
         font = {
           size = 18.0;
-
           normal = {
             family = "Fira Code";
+            style = "Regular";
           };
         };
       };
