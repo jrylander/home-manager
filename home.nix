@@ -23,19 +23,14 @@
     packages = with pkgs; [
       bitwarden-cli
       chezmoi
-      delve
-      fd
-      htop
       entr
+      fd
       helix
       jq
-      just
       k9s
       kubectl
       postgresql
-      protobuf
       ripgrep
-      rustup
       tmux
       wget
     ];
@@ -66,27 +61,11 @@
           columns = 150;
         };
         font = {
+          size = 18.0;
+
           normal = {
             family = "Fira Code";
-            style = "Regular";
           };
-
-          bold = {
-            family = "Fira Code";
-            style = "Bold";
-          };
-
-          italic = {
-            family = "Fira Code";
-            style = "Italic";
-          };
-
-          bold_italic = {
-            family = "Fira Code";
-            style = "Bold Italic";
-          };
-
-          size = 18.0;
         };
       };
     };
@@ -172,32 +151,13 @@
 
         # The next line enables shell command completion for gcloud.
         if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-        
+
         source ~/.zshrc-local || true
       '';
     };
 
     fzf = {
       enable = true;
-    };
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        fzf-vim
-      ];
-
-      extraConfig = ''
-        syntax on
-        set autochdir
-        filetype plugin indent on
-        set shiftwidth=2
-        set expandtab
-        let mapleader=' '
-      '';
     };
   };
 }
