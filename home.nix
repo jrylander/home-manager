@@ -4,8 +4,6 @@
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
   home = {
-    # Home Manager needs a bit of information about you and the
-    # paths it should manage.
     username = "jrylander";
     homeDirectory = "/home/jrylander";
 
@@ -23,6 +21,8 @@
     packages = with pkgs; [
       bind
       fd
+      git
+      killall
     ];
   };
 
