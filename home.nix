@@ -19,59 +19,11 @@
     # changes in each release.
     stateVersion = "22.11";
 
+
     packages = with pkgs; [
       bind
-      bitwarden-cli
-      calibre
-      chezmoi
-      discord
-      docker
-      docker-compose
-      entr
       fd
-      fira-code
-      fira-code-symbols
-      gcc
-      git
-      gnome3.gnome-tweaks
-      helix
-      htop
-      jetbrains.idea-ultimate
-      signal-desktop
-      just
-      k9s
-      killall
-      kubectl
-      logseq
-      obsidian
-      openconnect
-      openssl
-      openssl.dev
-      pkg-config
-      protobuf
-      rustup
-      slack
-      spotify
-      teams
-      wireguard-tools
-      wireshark
-      xsel
     ];
-
-    sessionVariables = {
-      EDITOR = "hx";
-      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
-      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
-    };
-  };
-
-  services = {
-    dropbox = {
-      enable = true;
-    };
-    syncthing = {
-      enable = true;
-    };
   };
 
   programs = {
@@ -80,36 +32,11 @@
 
     bat.enable = true;
 
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          dimensions = {
-            columns = 132;
-            lines = 42;
-          };
-        };
-        font = {
-          size = 14;
-          normal = {
-            family = "Fira Code";
-            style = "Regular";
-          };
-        };
-      };
-    };
-
-    go = {
-      enable = true;
-      goPath = "go";
-    };
-
     tmux = {
       enable = true;
       shortcut = "w";
       keyMode = "vi";
       customPaneNavigationAndResize = true;
-      escapeTime = 0;
     };
 
     git = {
@@ -121,18 +48,9 @@
       };
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
-        url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         safe.directory = "/etc/nixos";
-        credential.helper = "store";
       };
-    };
-
-    chromium = {
-      enable = true;
-      extensions = [
-        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
-      ];
     };
 
     zsh = {
@@ -146,33 +64,9 @@
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        plugins = [ "git" ];
       };
       initExtra = ''
-        export GPG_TTY=$(tty)
-
-        # NVM
-        export NVM_DIR=$HOME/.local/share/nvm
-        if [[ ! -e $NVM_DIR ]]; then
-          git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
-        fi
-        source $NVM_DIR/nvm.sh
-        source $NVM_DIR/bash_completion
-
-        # Rustup
-        export CARGO_HOME=$HOME/.cargo
-        if [[ -e $CARGO_HOME ]]; then
-          export PATH=$CARGO_HOME/bin:$PATH
-        fi
-
-        export PATH=~/.local/bin:$PATH
-
-        # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-        # The next line enables shell command completion for gcloud.
-        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-
         source ~/.zshrc-local || true
       '';
     };
