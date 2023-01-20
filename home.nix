@@ -24,7 +24,6 @@
       bitwarden-cli
       calibre
       chezmoi
-      delve
       discord
       docker
       docker-compose
@@ -32,36 +31,25 @@
       fd
       fira-code
       fira-code-symbols
-      gcc
-      git
       gnome3.gnome-tweaks
-      helix
-      htop
       jetbrains.idea-ultimate
       jq
       signal-desktop
-      just
       k9s
       killall
       kubectl
+      lazygit
       logseq
-      nodejs-18_x
       openconnect
-      openssl
-      openssl.dev
-      pkg-config
-      postgresql
-      protobuf
-      rustup
+      slack
       spotify
       teams
-      xsel
     ];
 
     sessionVariables = {
-      EDITOR = "hx";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
+      GOROOT = "${pkgs.go}/share/go";
     };
   };
 
@@ -79,6 +67,10 @@
     home-manager.enable = true;
 
     bat.enable = true;
+
+    direnv = {
+      enable = true;
+    };
 
     alacritty = {
       enable = true;
@@ -101,7 +93,6 @@
 
     go = {
       enable = true;
-      goPath = "go";
     };
 
     tmux = {
@@ -123,8 +114,8 @@
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
-        safe.directory = "/etc/nixos";
         credential.helper = "store";
+        pull.rebase  = "false";
       };
     };
 
@@ -149,6 +140,19 @@
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
       };
       initExtra = ''
+        ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+        pasteinit() {
+          OLD_SELF_INSERT=''${''${(s.:.)widgets[self-insert]}[2,3]}
+          zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+        }
+
+        pastefinish() {
+          zle -N self-insert $OLD_SELF_INSERT
+        }
+        zstyle :bracketed-paste-magic paste-init pasteinit
+        zstyle :bracketed-paste-magic paste-finish pastefinish
+        ### Fix slowness of pastes
+
         export GPG_TTY=$(tty)
 
         # Rustup
