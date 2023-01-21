@@ -19,6 +19,7 @@
     # changes in each release.
     stateVersion = "22.11";
 
+
     packages = with pkgs; [
       bind
       bitwarden-cli
@@ -80,10 +81,6 @@
         };
         font = {
           size = 14;
-          normal = {
-            family = "Fira Code";
-            style = "Regular";
-          };
         };
       };
     };
@@ -180,6 +177,25 @@
 
     fzf = {
       enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      vimAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        fzf-vim
+      ];
+
+      extraConfig = ''
+        syntax on
+        set autochdir
+        filetype plugin indent on
+        set shiftwidth=2
+        set expandtab
+        let mapleader=' '
+      '';
     };
   };
 }
