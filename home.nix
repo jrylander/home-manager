@@ -32,7 +32,6 @@
       fd
       fira-code
       fira-code-symbols
-      gnome3.gnome-tweaks
       jetbrains.idea-ultimate
       signal-desktop
       k9s
@@ -40,17 +39,13 @@
       kubectl
       lazygit
       logseq
-      openconnect
       slack
       spotify
       teams
-      wireguard-tools
     ];
 
     sessionVariables = {
-      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
-      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
-      GOROOT = "${pkgs.go}/share/go";
+      NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
     };
   };
 
@@ -67,25 +62,6 @@
     bat.enable = true;
     
     direnv = {
-      enable = true;
-    };
-
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          dimensions = {
-            columns = 132;
-            lines = 40;
-          };
-        };
-        font = {
-          size = 14;
-        };
-      };
-    };
-
-    go = {
       enable = true;
     };
 
@@ -146,30 +122,6 @@
         zstyle :bracketed-paste-magic paste-init pasteinit
         zstyle :bracketed-paste-magic paste-finish pastefinish
         ### Fix slowness of pastes
-
-        export GPG_TTY=$(tty)
-
-        # NVM
-        export NVM_DIR=$HOME/.local/share/nvm
-        if [[ ! -e $NVM_DIR ]]; then
-          git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
-        fi
-        source $NVM_DIR/nvm.sh
-        source $NVM_DIR/bash_completion
-
-        # Rustup
-        export CARGO_HOME=$HOME/.cargo
-        if [[ -e $CARGO_HOME ]]; then
-          export PATH=$CARGO_HOME/bin:$PATH
-        fi
-
-        export PATH=~/.local/bin:$PATH
-
-        # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-        # The next line enables shell command completion for gcloud.
-        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
         source ~/.zshrc-local || true
       '';
