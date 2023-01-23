@@ -25,16 +25,17 @@
       chezmoi
       entr
       fd
-      helix
       jq
       k9s
+      killall
       kubectl
+      kubeseal
+      lazygit
       ripgrep
-      tmux
     ];
 
     sessionVariables = {
-      EDITOR = "hx";
+      EDITOR = "nvim";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
       GOROOT = "${pkgs.go}/share/go";
@@ -46,6 +47,10 @@
     home-manager.enable = true;
 
     bat.enable = true;
+
+    direnv = {
+      enable = true;
+    };
 
     alacritty = {
       enable = true;
@@ -62,16 +67,8 @@
         };
         font = {
           size = 18.0;
-          normal = {
-            family = "Fira Code";
-            style = "Regular";
-          };
         };
       };
-    };
-
-    go = {
-      enable = true;
     };
 
     tmux = {
@@ -93,11 +90,11 @@
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
-        safe.directory = "/etc/nixos";
         credential.helper = "store";
+        pull.rebase  = "false";
       };
     };
-
+    
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
