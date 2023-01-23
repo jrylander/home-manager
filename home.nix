@@ -107,7 +107,8 @@
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        plugins = [ "git" ];
+        theme = "robbyrussell";
       };
       initExtra = ''
         ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
