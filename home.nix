@@ -52,25 +52,6 @@
       enable = true;
     };
 
-    alacritty = {
-      enable = true;
-      settings = {
-        import = [
-          "~/.alacritty-colorscheme/themes/afterglow.yaml"
-#          "~/.alacritty-colorscheme/themes/night_owlish_light.yaml"
-        ];
-        window = {
-          dimensions = {
-            columns = 150;
-            lines = 45;
-          };
-        };
-        font = {
-          size = 18.0;
-        };
-      };
-    };
-
     tmux = {
       enable = true;
       shortcut = "w";
