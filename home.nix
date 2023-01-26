@@ -3,6 +3,8 @@
 {
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
+  targets.genericLinux.enable = true;
+
   home = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -45,6 +47,7 @@
     ];
 
     sessionVariables = {
+      EDITOR = "${pkgs.neovim}/bin/nvim";
       NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
     };
   };
