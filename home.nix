@@ -92,13 +92,6 @@
       };
     };
 
-    chromium = {
-      enable = true;
-      extensions = [
-        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
-      ];
-    };
-
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
