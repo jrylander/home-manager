@@ -22,6 +22,8 @@
       fd
       git
       killall
+      python3
+      traceroute
     ];
 
     sessionVariables = {
