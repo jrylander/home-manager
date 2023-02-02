@@ -25,25 +25,15 @@
     packages = with pkgs; [
       bind
       bitwarden-cli
-      calibre
       chezmoi
-      discord
       docker
       docker-compose
       entr
       fd
-      fira-code
-      fira-code-symbols
-      jetbrains.idea-ultimate
-      signal-desktop
       k9s
       killall
       kubectl
       lazygit
-      logseq
-      slack
-      spotify
-      teams
     ];
 
     sessionVariables = {
