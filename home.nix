@@ -17,6 +17,7 @@
     # changes in each release.
     stateVersion = "22.11";
 
+
     packages = with pkgs; [
       bind
       fd
@@ -25,10 +26,6 @@
       python3
       traceroute
     ];
-
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
   };
 
   programs = {
