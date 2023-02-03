@@ -30,10 +30,12 @@
       docker-compose
       entr
       fd
+      helm
       k9s
       killall
       kubectl
       lazygit
+      ripgrep
     ];
 
     sessionVariables = {
