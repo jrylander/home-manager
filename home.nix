@@ -36,6 +36,7 @@
       kubectl
       lazygit
       ripgrep
+      traceroute
     ];
 
     sessionVariables = {
@@ -52,6 +53,7 @@
     
     direnv = {
       enable = true;
+      nix-direnv.enable = true;
     };
 
     tmux = {
@@ -112,9 +114,9 @@
       
             if [ -z "$1" ]
             then
-                kubectl get --ignore-not-found $${i}
+                kubectl get --ignore-not-found ''${i}
             else
-                kubectl -n $${1} get --ignore-not-found $${i}
+                kubectl -n ''${1} get --ignore-not-found ''${i}
             fi
           done
         }
