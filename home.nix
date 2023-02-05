@@ -26,6 +26,7 @@
       entr
       fd
       jq
+      helm
       k9s
       killall
       kubectl
@@ -35,7 +36,7 @@
     ];
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "${pkgs.neovim}/bin/nvim";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
       GOROOT = "${pkgs.go}/share/go";
@@ -50,25 +51,7 @@
 
     direnv = {
       enable = true;
-    };
-
-    alacritty = {
-      enable = true;
-      settings = {
-        import = [
-          "~/.alacritty-colorscheme/themes/afterglow.yaml"
-#          "~/.alacritty-colorscheme/themes/night_owlish_light.yaml"
-        ];
-        window = {
-          dimensions = {
-            columns = 150;
-            lines = 45;
-          };
-        };
-        font = {
-          size = 18.0;
-        };
-      };
+      nix-direnv.enable = true;
     };
 
     tmux = {
@@ -83,9 +66,7 @@
       enable = true;
       userEmail = "johan@rylander.cc";
       userName = "Johan Rylander";
-      delta = {
-        enable = true;
-      };
+      difftastic.enable = true;
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
@@ -94,7 +75,7 @@
         pull.rebase  = "false";
       };
     };
-    
+
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
@@ -107,6 +88,7 @@
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        theme = "robbyrussell";
       };
       initExtra = ''
         ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
