@@ -21,19 +21,18 @@
     # changes in each release.
     stateVersion = "22.11";
 
-
     packages = with pkgs; [
       bind
       bitwarden-cli
       chezmoi
-      docker
-      docker-compose
       entr
       fd
+      jq
       helm
       k9s
       killall
       kubectl
+      kubeseal
       lazygit
       ripgrep
       traceroute
@@ -42,6 +41,9 @@
     sessionVariables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
       NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
+      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
+      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
+      GOROOT = "${pkgs.go}/share/go";
     };
   };
 
@@ -50,7 +52,7 @@
     home-manager.enable = true;
 
     bat.enable = true;
-    
+
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -89,7 +91,7 @@
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" ];
+        plugins = [ "git" "docker" "docker-compose" "kubectl" ];
         theme = "robbyrussell";
       };
       initExtra = ''
