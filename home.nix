@@ -3,6 +3,8 @@
 {
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
+  targets.genericLinux.enable = true;
+
   home = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -22,43 +24,26 @@
     packages = with pkgs; [
       bind
       bitwarden-cli
-      calibre
       chezmoi
-      discord
-      docker
-      docker-compose
       entr
       fd
-      fira-code
-      fira-code-symbols
-      gnome3.gnome-tweaks
-      jetbrains.idea-ultimate
       jq
-      signal-desktop
+      helm
       k9s
       killall
       kubectl
+      kubeseal
       lazygit
-      logseq
-      openconnect
-      slack
-      spotify
-      teams
+      ripgrep
+      traceroute
     ];
 
     sessionVariables = {
+      EDITOR = "${pkgs.neovim}/bin/nvim";
+      NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
       GOROOT = "${pkgs.go}/share/go";
-    };
-  };
-
-  services = {
-    dropbox = {
-      enable = true;
-    };
-    syncthing = {
-      enable = true;
     };
   };
 
@@ -70,29 +55,7 @@
 
     direnv = {
       enable = true;
-    };
-
-    alacritty = {
-      enable = true;
-      settings = {
-        window = {
-          dimensions = {
-            columns = 152;
-            lines = 52;
-          };
-        };
-        font = {
-          size = 14;
-          normal = {
-            family = "Fira Code";
-            style = "Regular";
-          };
-        };
-      };
-    };
-
-    go = {
-      enable = true;
+      nix-direnv.enable = true;
     };
 
     tmux = {
@@ -107,9 +70,7 @@
       enable = true;
       userEmail = "johan@rylander.cc";
       userName = "Johan Rylander";
-      delta = {
-        enable = true;
-      };
+      difftastic.enable = true;
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
@@ -117,13 +78,6 @@
         credential.helper = "store";
         pull.rebase  = "false";
       };
-    };
-
-    chromium = {
-      enable = true;
-      extensions = [
-        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
-      ];
     };
 
     zsh = {
@@ -138,6 +92,7 @@
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        theme = "robbyrussell";
       };
       initExtra = ''
         ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
@@ -153,21 +108,24 @@
         zstyle :bracketed-paste-magic paste-finish pastefinish
         ### Fix slowness of pastes
 
-        export GPG_TTY=$(tty)
-
         # Rustup
         export CARGO_HOME=$HOME/.cargo
         if [[ -e $CARGO_HOME ]]; then
           export PATH=$CARGO_HOME/bin:$PATH
         fi
 
-        export PATH=~/.local/bin:$PATH
+        function kubectlgetall {
+          for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+            echo "Resource:" $$i
 
-        # The next line updates PATH for the Google Cloud SDK.
-        if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-        # The next line enables shell command completion for gcloud.
-        if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
+            if [ -z "$1" ]
+            then
+                kubectl get --ignore-not-found ''${i}
+            else
+                kubectl -n ''${1} get --ignore-not-found ''${i}
+            fi
+          done
+        }
 
         source ~/.zshrc-local || true
       '';
@@ -175,6 +133,25 @@
 
     fzf = {
       enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      vimAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        fzf-vim
+      ];
+
+      extraConfig = ''
+        syntax on
+        set autochdir
+        filetype plugin indent on
+        set shiftwidth=2
+        set expandtab
+        let mapleader=' '
+      '';
     };
   };
 }
