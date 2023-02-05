@@ -68,9 +68,7 @@
       enable = true;
       userEmail = "johan@rylander.cc";
       userName = "Johan Rylander";
-      delta = {
-        enable = true;
-      };
+      difftastic.enable = true;
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
