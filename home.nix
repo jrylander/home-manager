@@ -19,19 +19,24 @@
     # changes in each release.
     stateVersion = "22.11";
 
-
     packages = with pkgs; [
       bind
       bitwarden-cli
       chezmoi
+      entr
       fd
-      git
-      helix
+      jq
+      helm
+      k9s
       killall
+      lazygit
+      ripgrep
+      traceroute
     ];
 
     sessionVariables = {
-      EDITOR = "hx";
+      EDITOR = "${pkgs.neovim}/bin/nvim";
+      NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
     };
   };
 
@@ -41,23 +46,29 @@
 
     bat.enable = true;
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
     tmux = {
       enable = true;
       shortcut = "w";
       keyMode = "vi";
       customPaneNavigationAndResize = true;
+      escapeTime = 0;
     };
 
     git = {
       enable = true;
       userEmail = "johan@rylander.cc";
       userName = "Johan Rylander";
-      delta = {
-        enable = true;
-      };
+      difftastic.enable = true;
       extraConfig = {
         core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";
         init.defaultBranch = "master";
+        credential.helper = "store";
+        pull.rebase  = "false";
       };
     };
 
@@ -72,9 +83,23 @@
       };
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" ];
+        plugins = [ "git" "docker" "docker-compose" "kubectl" ];
+        theme = "robbyrussell";
       };
       initExtra = ''
+        ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
+        pasteinit() {
+          OLD_SELF_INSERT=''${''${(s.:.)widgets[self-insert]}[2,3]}
+          zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+        }
+
+        pastefinish() {
+          zle -N self-insert $OLD_SELF_INSERT
+        }
+        zstyle :bracketed-paste-magic paste-init pasteinit
+        zstyle :bracketed-paste-magic paste-finish pastefinish
+        ### Fix slowness of pastes
+
         source ~/.zshrc-local || true
       '';
     };
