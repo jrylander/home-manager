@@ -26,7 +26,6 @@
       entr
       fd
       jq
-      helm
       k9s
       killall
       kubectl
