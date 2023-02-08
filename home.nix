@@ -22,6 +22,7 @@
 
     packages = with pkgs; [
       bitwarden-cli
+      cachix
       chezmoi
       entr
       fd
