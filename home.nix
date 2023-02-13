@@ -41,9 +41,6 @@
     sessionVariables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
       NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
-      GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
-      PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
-      GOROOT = "${pkgs.go}/share/go";
     };
   };
 
