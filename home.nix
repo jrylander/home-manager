@@ -67,7 +67,7 @@
 
     git = {
       enable = true;
-      userEmail = "johan@rylander.cc";
+      userEmail = "johan.rylander@svt.se";
       userName = "Johan Rylander";
       difftastic.enable = true;
       extraConfig = {
