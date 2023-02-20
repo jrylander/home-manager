@@ -22,11 +22,10 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
-      bind
       bitwarden-cli
+      cachix
       chezmoi
       entr
-      fd
       jq
       helm
       k9s
@@ -35,7 +34,6 @@
       kubeseal
       lazygit
       ripgrep
-      traceroute
     ];
 
     sessionVariables = {
