@@ -85,6 +85,10 @@
       defaultKeymap = "emacs";
       enableSyntaxHighlighting = true;
       enableAutosuggestions = true;
+      shellAliases = {
+        dev = "k9s --context dev.aurora --namespace ds";
+        app = "k9s --context app.aurora --namespace ds";
+      };
       history = {
         expireDuplicatesFirst = true;
         extended = true;
