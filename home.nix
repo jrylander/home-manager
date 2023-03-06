@@ -61,7 +61,8 @@
       customPaneNavigationAndResize = true;
       escapeTime = 0;
       extraConfig = ''
-        set-hook -g session-created 'rename-window history ; new-window ; rename-window dev ; new-window ; rename-window app ; new-window ; rename-window db ; new-window ; rename-window misc'
+        set-hook -g session-created 'rename-window history ; new-window ; rename-window profile ; new-window ; rename-window k8s ; new-window ; rename-window db ; new-window ; rename-window misc'
+
       '';
     };
 
