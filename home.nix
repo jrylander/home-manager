@@ -114,20 +114,6 @@
 
         export GPG_TTY=$(tty)
 
-        # NVM
-        export NVM_DIR=$HOME/.local/share/nvm
-        if [[ ! -e $NVM_DIR ]]; then
-          git clone https://github.com/nvm-sh/nvm.git $NVM_DIR
-        fi
-        source $NVM_DIR/nvm.sh
-        source $NVM_DIR/bash_completion
-
-        # Rustup
-        export CARGO_HOME=$HOME/.cargo
-        if [[ -e $CARGO_HOME ]]; then
-          export PATH=$CARGO_HOME/bin:$PATH
-        fi
-
         export PATH=~/.local/bin:$PATH
 
         # Rancher desktop
