@@ -29,6 +29,7 @@
       jq
       k9s
       killall
+      kn
       kubectl
       kubeseal
       lazygit
