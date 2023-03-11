@@ -34,6 +34,7 @@
       kubectl
       kubeseal
       lazygit
+      nixpkgs-fmt
       ripgrep
       traceroute
     ];
@@ -73,7 +74,7 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         credential.helper = "store";
-        pull.rebase  = "false";
+        pull.rebase = "false";
       };
     };
 
@@ -108,7 +109,7 @@
         function kubectlgetall {
           for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
             echo "Resource:" $$i
-      
+
             if [ -z "$1" ]
             then
                 kubectl get --ignore-not-found ''${i}
@@ -143,6 +144,10 @@
         set expandtab
         let mapleader=' '
       '';
+    };
+
+    helix = {
+      enable = true;
     };
   };
 }
