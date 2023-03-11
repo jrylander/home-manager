@@ -145,9 +145,5 @@
         let mapleader=' '
       '';
     };
-
-    helix = {
-      enable = true;
-    };
   };
 }
