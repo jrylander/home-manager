@@ -60,6 +60,10 @@
       keyMode = "vi";
       customPaneNavigationAndResize = true;
       escapeTime = 0;
+      extraConfig = ''
+        set-hook -g session-created 'rename-window history ; new-window ; rename-window profile ; new-window ; rename-window k8s ; new-window ; rename-window db ; new-window ; rename-window domestic' ; new-window ; rename-window privat'
+
+      '';
     };
 
     git = {
@@ -81,6 +85,10 @@
       defaultKeymap = "emacs";
       enableSyntaxHighlighting = true;
       enableAutosuggestions = true;
+      shellAliases = {
+        dev = "k9s --context dev.aurora --namespace ds";
+        app = "k9s --context app.aurora --namespace ds";
+      };
       history = {
         expireDuplicatesFirst = true;
         extended = true;
@@ -103,19 +111,6 @@
         zstyle :bracketed-paste-magic paste-init pasteinit
         zstyle :bracketed-paste-magic paste-finish pastefinish
         ### Fix slowness of pastes
-
-        function kubectlgetall {
-          for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
-            echo "Resource:" $$i
-
-            if [ -z "$1" ]
-            then
-                kubectl get --ignore-not-found ''${i}
-            else
-                kubectl -n ''${1} get --ignore-not-found ''${i}
-            fi
-          done
-        }
 
         source ~/.zshrc-local || true
       '';
