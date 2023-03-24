@@ -24,7 +24,6 @@
     packages = with pkgs; [
       bind
       bitwarden-cli
-      chezmoi
       entr
       fd
       jq
@@ -33,7 +32,6 @@
       killall
       kubectl
       kubeseal
-      lazygit
       nixpkgs-fmt
       ripgrep
       traceroute
