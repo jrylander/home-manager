@@ -26,6 +26,11 @@
       python3
       traceroute
     ];
+
+    sessionVariables = {
+      EDITOR = "${pkgs.neovim}/bin/nvim";
+      NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
+    };
   };
 
   programs = {
