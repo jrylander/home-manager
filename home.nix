@@ -37,7 +37,6 @@
     ];
 
     sessionVariables = {
-      EDITOR = "${pkgs.neovim}/bin/nvim";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
       PKG_CONFIG_PATH = "/home/jrylander/.nix-profile/lib/pkgconfig";
       GOROOT = "${pkgs.go}/share/go";
@@ -128,25 +127,6 @@
 
     fzf = {
       enable = true;
-    };
-
-    neovim = {
-      enable = true;
-      vimAlias = true;
-
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        fzf-vim
-      ];
-
-      extraConfig = ''
-        syntax on
-        set autochdir
-        filetype plugin indent on
-        set shiftwidth=2
-        set expandtab
-        let mapleader=' '
-      '';
     };
   };
 }
