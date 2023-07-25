@@ -72,7 +72,12 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         credential.helper = "store";
-        pull.rebase  = "false";
+        pull.rebase = false;
+        diff.tool = "meld";
+        difftool.prompt = false;
+        difftool."meld".cmd = ''meld "$REMOTE" "$LOCAL"'';
+        merge.tool = "meld";
+        mergetool."meld".cmd = ''meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'';
       };
     };
 
