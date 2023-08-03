@@ -74,6 +74,11 @@
         init.defaultBranch = "master";
         credential.helper = "store";
         pull.rebase  = "false";
+        diff.tool = "meld";
+        difftool.prompt = false;
+        difftool."meld".cmd = ''open -W -a Meld "$LOCAL" "$REMOTE"'';
+        merge.tool = "meld";
+        mergetool."meld".cmd = ''open -W -a Meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'';
       };
     };
 
