@@ -27,13 +27,11 @@
       chezmoi
       entr
       jq
-      helm
       k9s
       killall
       kn
       kubectl
       kubeseal
-      lazygit
       ripgrep
     ];
 
