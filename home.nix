@@ -21,9 +21,7 @@
     stateVersion = "22.11";
 
     packages = with pkgs; [
-      bitwarden-cli
       cachix
-      chezmoi
       entr
       fd
       jq
@@ -32,7 +30,6 @@
       kn
       kubectl
       kubeseal
-      lazygit
       ripgrep
     ];
 
