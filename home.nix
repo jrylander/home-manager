@@ -126,6 +126,9 @@
 
         source ~/.zshrc-local || true
       '';
+      envExtra = ''
+        source ~/.zshenv-local || true
+      '';
     };
 
     fzf = {
