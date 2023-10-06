@@ -23,13 +23,13 @@
 
     packages = with pkgs; [
       bind
-      bitwarden-cli
       entr
       fd
       jq
       helm
       k9s
       killall
+      kn
       kubectl
       kubeseal
       nixpkgs-fmt
@@ -115,6 +115,9 @@
         ### Fix slowness of pastes
 
         source ~/.zshrc-local || true
+      '';
+      envExtra = ''
+        source ~/.zshenv-local || true
       '';
     };
 
