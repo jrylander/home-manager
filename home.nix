@@ -58,6 +58,10 @@
       keyMode = "vi";
       customPaneNavigationAndResize = true;
       escapeTime = 0;
+      extraConfig = ''
+        set-window-option -g window-status-current-format '#{window_index}:#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev)*'
+        set-window-option -g window-status-format '#{window_index}:#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev)-'
+      '';
     };
 
     git = {
