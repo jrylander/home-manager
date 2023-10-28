@@ -19,6 +19,7 @@
 
 
     packages = with pkgs; [
+      bc
       bind
       fd
       jq
