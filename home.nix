@@ -35,6 +35,7 @@
       nixpkgs-fmt
       ripgrep
       traceroute
+      zellij
     ];
 
     sessionVariables = {
