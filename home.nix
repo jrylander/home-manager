@@ -21,22 +21,6 @@
     # changes in each release.
     stateVersion = "22.11";
 
-    packages = with pkgs; [
-      bitwarden-cli
-      cachix
-      chezmoi
-      entr
-      jq
-      helm
-      k9s
-      killall
-      kn
-      kubectl
-      kubeseal
-      lazygit
-      ripgrep
-    ];
-
     sessionVariables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
       NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
