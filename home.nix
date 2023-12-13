@@ -21,23 +21,6 @@
     # changes in each release.
     stateVersion = "22.11";
 
-    packages = with pkgs; [
-      bind
-      entr
-      fd
-      jq
-      helm
-      k9s
-      killall
-      kn
-      kubectl
-      kubeseal
-      nixpkgs-fmt
-      ripgrep
-      traceroute
-      zellij
-    ];
-
     sessionVariables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
       NIX_PATH = "/home/jrylander/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels";
