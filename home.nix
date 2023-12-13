@@ -20,22 +20,9 @@
     # changes in each release.
     stateVersion = "22.11";
 
-    packages = with pkgs; [
-      cachix
-      entr
-      fd
-      jq
-      k9s
-      killall
-      kn
-      kubectl
-      kubeseal
-      ripgrep
-    ];
-
     sessionVariables = {
+      EDITOR = "${pkgs.neovim}/bin/nvim";
       GOOGLE_APPLICATION_CREDENTIALS = "service-account-credentials.json";
-      EDITOR = "/opt/homebrew/bin/nvim";
     };
   };
 
@@ -135,6 +122,25 @@
 
     fzf = {
       enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      vimAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        vim-nix
+        fzf-vim
+      ];
+
+      extraConfig = ''
+        syntax on
+        set autochdir
+        filetype plugin indent on
+        set shiftwidth=2
+        set expandtab
+        let mapleader=' '
+      '';
     };
   };
 }
