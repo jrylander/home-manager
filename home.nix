@@ -97,26 +97,10 @@
         zstyle :bracketed-paste-magic paste-finish pastefinish
         ### Fix slowness of pastes
 
-        # Rustup
-        export CARGO_HOME=$HOME/.cargo
-        if [[ -e $CARGO_HOME ]]; then
-          export PATH=$CARGO_HOME/bin:$PATH
-        fi
-
-        function kubectlgetall {
-          for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
-            echo "Resource:" $$i
-
-            if [ -z "$1" ]
-            then
-                kubectl get --ignore-not-found ''${i}
-            else
-                kubectl -n ''${1} get --ignore-not-found ''${i}
-            fi
-          done
-        }
-
         source ~/.zshrc-local || true
+      '';
+      envExtra = ''
+        source ~/.zshenv-local || true
       '';
     };
 
