@@ -44,6 +44,10 @@
       keyMode = "vi";
       customPaneNavigationAndResize = true;
       escapeTime = 0;
+      extraConfig = ''
+        set-window-option -g window-status-current-format '#{window_index}:#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev)*'
+        set-window-option -g window-status-format '#{window_index}:#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev)-'
+      '';
     };
 
     git = {
@@ -56,7 +60,7 @@
         url."git@git.svt.se:".insteadOf = "https://git.svt.se/";
         init.defaultBranch = "master";
         credential.helper = "store";
-        pull.rebase = false;
+        pull.rebase = "false";
         diff.tool = "meld";
         difftool.prompt = false;
         difftool."meld".cmd = ''meld "$LOCAL" "$REMOTE"'';
@@ -65,6 +69,7 @@
       };
     };
 
+/*
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
@@ -107,6 +112,7 @@
     fzf = {
       enable = true;
     };
+    */
 
     neovim = {
       enable = true;
