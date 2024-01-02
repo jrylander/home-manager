@@ -31,6 +31,17 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+      '';
+      shellAliases = {
+        dev = "k9s --context dev.aurora --namespace ds";
+        app = "k9s --context app.aurora --namespace ds";
+      };
+    };
+
     bat.enable = true;
 
     direnv = {
@@ -67,14 +78,6 @@
         merge.tool = "meld";
         mergetool."meld".cmd = ''meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"'';
 
-      };
-    };
-
-    fish = {
-      enable = true;
-      shellAliases = {
-        dev = "k9s --context dev.aurora --namespace ds";
-        app = "k9s --context app.aurora --namespace ds";
       };
     };
 
