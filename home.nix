@@ -33,6 +33,11 @@
 
     fish = {
       enable = true;
+      shellInit = ''
+        if test -e $HOME/.fish-local.conf
+          source $HOME/.fish-local.conf
+        end
+      '';
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
       '';
@@ -40,6 +45,8 @@
         dev = "k9s --context dev.aurora --namespace ds";
         app = "k9s --context app.aurora --namespace ds";
       };
+      plugins = [
+      ];
     };
 
     bat.enable = true;
