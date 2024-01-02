@@ -70,6 +70,15 @@
       };
     };
 
+    fish = {
+      enable = true;
+      shellAliases = {
+        dev = "k9s --context dev.aurora --namespace ds";
+        app = "k9s --context app.aurora --namespace ds";
+      };
+    };
+
+/*
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
@@ -112,6 +121,7 @@
     fzf = {
       enable = true;
     };
+    */
 
     neovim = {
       enable = true;
