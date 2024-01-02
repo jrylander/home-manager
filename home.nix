@@ -45,6 +45,10 @@
       keyMode = "vi";
       customPaneNavigationAndResize = true;
       escapeTime = 0;
+      extraConfig = ''
+        set-window-option -g window-status-current-format '#{window_index}:#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev)*'
+        set-window-option -g window-status-format '#{window_index}:#(echo "#{pane_current_path}" | rev | cut -d'/' -f-1 | rev)-'
+      '';
     };
 
     git = {
@@ -60,6 +64,7 @@
       };
     };
 
+/*
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
@@ -90,11 +95,15 @@
 
         source ~/.zshrc-local || true
       '';
+      envExtra = ''
+        source ~/.zshenv-local || true
+      '';
     };
 
     fzf = {
       enable = true;
     };
+    */
 
     neovim = {
       enable = true;
