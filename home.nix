@@ -68,6 +68,7 @@
       };
     };
 
+/*
     zsh = {
       enable = true;
       defaultKeymap = "emacs";
@@ -123,6 +124,7 @@
     fzf = {
       enable = true;
     };
+    */
 
     neovim = {
       enable = true;
